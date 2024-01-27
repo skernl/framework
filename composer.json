@@ -1,0 +1,33 @@
+{
+    "name": "skernl/di",
+    "version": "v0.0.3",
+    "type": "library",
+    "keywords": [
+        "php",
+        "swoole",
+        "framework",
+        "skernl"
+    ],
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Skernl\\Di\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "wheakerd",
+            "email": "wheakerd@qq.com"
+        },
+        {
+            "name": "wheakerd",
+            "email": "wheakerd@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=8.3",
+        "skernl/contract": "dev-main",
+        "swoole/ide-helper": "dev-master"
+    }
+}
