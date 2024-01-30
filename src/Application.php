@@ -3,18 +3,15 @@ declare(strict_types=1);
 
 namespace Skernl\Framework;
 
+use App\Controller\IndexController;
 use Skernl\Contract\{
     ApplicationInterface,
-    ContainerInterface,
 };
-use Composer\Autoload\ClassLoader;
 use FilesystemIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
-use ReflectionException;
 use Skernl\Config\Config;
-use Skernl\Di\Definition\DefinitionSource;
-use Skernl\Di\Definition\SourceManager;
+use Skernl\Context\ApplicationContext;
 use SplFileInfo;
 
 /**
@@ -30,29 +27,10 @@ class Application implements ApplicationInterface
 
     private function init(): void
     {
-        /** @noinspection PhpUnhandledExceptionInspection */
-        $this->initSource();
-        $this->initConfig();
-    }
+        ApplicationContext::getContainer()->get(IndexController::class)->index();
 
-    /**
-     * @return void
-     * @throws ReflectionException
-     */
-    private function initSource(): void
-    {
-        $loaders = ClassLoader::getRegisteredLoaders();
-        /**
-         * @var ClassLoader $classLoader
-         */
-        $classLoader = reset($loaders);
-        $sourceManager = new SourceManager(
-            array_keys(
-                $classLoader->getClassMap()
-            )
-        );
-        /** @noinspection PhpUnhandledExceptionInspection */
-        $sourceManager->getSource(DefinitionSource::class)->newInstance();
+        die;
+        $this->initConfig();
     }
 
     /**
@@ -84,6 +62,10 @@ class Application implements ApplicationInterface
     }
 
     private function initServer(array $serverConfig)
+    {
+    }
+
+    public function run(): void
     {
     }
 }
