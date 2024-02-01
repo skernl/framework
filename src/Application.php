@@ -3,15 +3,11 @@ declare(strict_types=1);
 
 namespace Skernl\Framework;
 
-use App\Controller\IndexController;
-use Skernl\Contract\{
-    ApplicationInterface,
-};
 use FilesystemIterator;
 use RecursiveDirectoryIterator;
 use RecursiveIteratorIterator;
 use Skernl\Config\Config;
-use Skernl\Context\ApplicationContext;
+use Skernl\Framework\Contract\ApplicationInterface;
 use SplFileInfo;
 
 /**
@@ -27,9 +23,6 @@ class Application implements ApplicationInterface
 
     private function init(): void
     {
-        ApplicationContext::getContainer()->get(IndexController::class)->index();
-
-        die;
         $this->initConfig();
     }
 
